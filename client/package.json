@@ -20,9 +20,9 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -41,6 +41,9 @@
     ]
   },
   "devDependencies": {
-    "craco-less": "^1.16.0"
+    "clean-webpack-plugin": "^3.0.0",
+    "craco-less": "^1.16.0",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpackbar": "^4.0.0"
   }
 }
