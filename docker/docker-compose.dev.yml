@@ -1,0 +1,17 @@
+# Use postgres/example user/password credentials
+version: '3.6'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: zaq1@WSX
+      POSTGRES_DB: api
+      PGDATA: /data/pgdata
+    volumes:
+        - ../docker/pgdata:/data/pgdata
+    ports: 
+        - "5444:5432"
