@@ -1,6 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-const knex = require("./db");
+import express = require('express');
+import cors = require('cors');
+import knex = require('./db');
 
 const app = express();
 //middleware

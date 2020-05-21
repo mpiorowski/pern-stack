@@ -1,7 +1,17 @@
-const knex = require("../../db");
-const express = require("express");
+import express = require("express");
+import knex = require("../../db");
+
 const router = express.Router();
 router.use(express.json());
+
+interface Todos {
+  id: number;
+  text: string;
+  done: boolean;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string;
+}
 
 router.get("/todos", async (req, res) => {
   try {
@@ -34,7 +44,7 @@ router.get("/todos/:id", async (req, res) => {
 router.post("/todos", (req, res) => {
   try {
     const { text } = req.body;
-    knex("todos")
+    knex<Todos>("todos")
       .returning("*")
       .insert({ text: text })
       .then((value) => {
