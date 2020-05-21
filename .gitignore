@@ -1,6 +1,9 @@
 #generate express
 express
 
+#pgadata
+./server/pgdata
+
 # Logs
 logs
 *.log
