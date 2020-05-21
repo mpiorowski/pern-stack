@@ -2,7 +2,7 @@
 express
 
 #pgadata
-./server/pgdata
+server/pgdata
 
 # Logs
 logs
