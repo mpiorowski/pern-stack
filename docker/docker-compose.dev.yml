@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: zaq1@WSX
-      POSTGRES_DB: api
+      POSTGRES_DB: server
       PGDATA: /data/pgdata
     volumes:
         - ../docker/pgdata:/data/pgdata
