@@ -1,0 +1,10 @@
+POST http://localhost:5000/todos HTTP/1.1
+content-type: application/json
+
+{
+    "text": "aaaa"
+}
+
+###
+
+GET http://localhost:5000/todos HTTP/1.1

@@ -1,5 +1,5 @@
 exports.up = function (knex) {
-  return knex.schema.createTable("todo", function (table) {
+  return knex.schema.createTable("todos", function (table) {
     table.increments();
     table.string("text").notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());
