@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Checkbox } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Form, Input, Button } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import { Todo } from "./TodosComponent";
+import { Submit } from "../../types/FormTypes";
 
-interface Props {}
+interface Props {
+  handleSubmit: Submit<Todo>;
+}
 
 const TodosForm = (props: Props) => {
   const [form] = Form.useForm();
-  const [update, forceUpdate] = useState();
+  const [, forceUpdate] = useState();
+  const [disabled, setDisabled] = useState(true);
 
-  // To disable submit button at the beginning.
-  //   useEffect(() => {
-  //     forceUpdate({});
-  //   }, []);
+  // To disable submit button at the beginning and set it disabled.
+  useEffect(() => {
+    forceUpdate({});
+    setDisabled(false);
+  }, []);
 
   const onFinish = (values: any) => {
-    console.log("Finish:", values);
+    props.handleSubmit(values);
   };
 
   return (
@@ -25,22 +31,12 @@ const TodosForm = (props: Props) => {
       onFinish={onFinish}
     >
       <Form.Item
-        name="username"
-        rules={[{ required: true, message: "Please input your username!" }]}
+        name="text"
+        rules={[{ required: true, message: "Please input todo!" }]}
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Username"
-        />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
-      >
-        <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
+          placeholder="Todo"
         />
       </Form.Item>
       <Form.Item shouldUpdate={true}>
@@ -49,12 +45,13 @@ const TodosForm = (props: Props) => {
             type="primary"
             htmlType="submit"
             disabled={
-              true
-              //   !form.isFieldsTouched(true) ||
-              //   form.getFieldsError().filter(({ errors }) => errors.length).length
+              disabled ||
+              !form.isFieldsTouched(true) ||
+              form.getFieldsError().filter(({ errors }) => errors.length)
+                .length > 0
             }
           >
-            Log in
+            Add
           </Button>
         )}
       </Form.Item>

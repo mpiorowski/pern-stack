@@ -1,5 +1,5 @@
 import express = require("express");
-import knex = require("../../db");
+import knex = require("../../config/db");
 import { toUnicode } from "punycode";
 
 const router = express.Router();
@@ -14,12 +14,13 @@ interface Todos {
   deleted_at: string;
 }
 
-router.get("/todos", async (req, res) => {
+router.get("/api/todos", async (req, res) => {
   try {
     knex
       .select()
       .from<Todos>("todos")
       .then((value) => {
+        console.log("request: /api/todos \nreturned: " + value.length);
         res.json(value);
       });
   } catch (error) {
@@ -27,7 +28,7 @@ router.get("/todos", async (req, res) => {
   }
 });
 
-router.get("/todos/:id", async (req, res) => {
+router.get("/api/todos/:id", async (req, res) => {
   try {
     const { id } = req.params;
     knex
@@ -42,7 +43,7 @@ router.get("/todos/:id", async (req, res) => {
   }
 });
 
-router.post("/todos", (req, res) => {
+router.post("/api/todos", (req, res) => {
   try {
     const { text } = req.body;
     knex<Todos>("todos")
@@ -56,7 +57,7 @@ router.post("/todos", (req, res) => {
   }
 });
 
-router.delete("/todos/:id", async (req, res) => {
+router.delete("/api/todos/:id", async (req, res) => {
   try {
     const { id } = req.params;
     knex("todos")

@@ -6,11 +6,12 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
+  //TODO: - short time solution, change for StrictMode
+  <React.Suspense fallback={''}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.Suspense>,
   document.getElementById("root")
 );
 

@@ -1,10 +1,6 @@
 import React, { FC } from "react";
-import {
-  Switch,
-  Route,
-  NavLink,
-} from "react-router-dom";
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Switch, Route, NavLink, Redirect } from "react-router-dom";
+import { Layout, Menu } from "antd";
 import "./App.less";
 import HomeComponent from "./components/home/HomeComponent";
 import TodosComponent from "./components/todos/TodosComponent";
@@ -17,13 +13,13 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Layout className="layout">
-        <Header>
-          <div className="logo" />
+      <Layout className="App-layout">
+        <Header className="App-header">
+          <div className="App-logo" />
           <Menu
-            theme="dark"
             mode="horizontal"
             selectedKeys={[location.pathname]}
+            className="App-header"
           >
             <Menu.Item key="/home">
               <NavLink to="/home">HOME</NavLink>
@@ -33,18 +29,16 @@ const App: React.FC = () => {
             </Menu.Item>
           </Menu>
         </Header>
-        <Content style={{ padding: "0 50px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
+        <Content style={{ padding: "50px 50px" }}>
           <Switch>
             <Route path="/todos">
               <TodosComponent />
             </Route>
-            <Route path="/">
+            <Route path="/home">
               <HomeComponent />
+            </Route>
+            <Route path="/">
+              <Redirect to="/home"></Redirect>
             </Route>
           </Switch>
         </Content>

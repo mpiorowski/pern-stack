@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon index",
+    "start": "knex migrate:latest && nodemon index",
     "migrate": "knex migrate:latest",
     "unmigrate": "knex migrate:rollback",
     "seed": "knex seed:run ",
