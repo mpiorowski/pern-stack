@@ -1,5 +1,6 @@
 import express = require("express");
 import knex = require("../../db");
+import { toUnicode } from "punycode";
 
 const router = express.Router();
 router.use(express.json());
@@ -17,7 +18,7 @@ router.get("/todos", async (req, res) => {
   try {
     knex
       .select()
-      .from("todos")
+      .from<Todos>("todos")
       .then((value) => {
         res.json(value);
       });
@@ -31,7 +32,7 @@ router.get("/todos/:id", async (req, res) => {
     const { id } = req.params;
     knex
       .select()
-      .from("todos")
+      .from<Todos>("todos")
       .where("id", id)
       .then((value) => {
         res.json(value);
@@ -64,8 +65,8 @@ router.delete("/todos/:id", async (req, res) => {
       .where("id", id)
       .then((value) => {
         console.log(value);
-        if (value.lenght > 0) {
-          res.json(value.lenght);
+        if (value > 0) {
+          res.json(value);
         } else {
           res.status(404);
           res.json(false);
@@ -76,4 +77,4 @@ router.delete("/todos/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+export = router;

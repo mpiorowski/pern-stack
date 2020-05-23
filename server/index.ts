@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 //services
-const todos = require("./services/todos/todos-service");
+import todos = require("./services/todos/todos-service");
 app.use(todos);
 
 app.listen(5000, () => {

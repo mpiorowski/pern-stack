@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.1.5",
     "clean-webpack-plugin": "^3.0.0",
     "craco-less": "^1.16.0",
     "webpack-bundle-analyzer": "^3.8.0",
